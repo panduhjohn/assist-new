@@ -31,12 +31,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
             </li>
-            <% } else if(user) { %>
+            <% } else { %>
             <li class="nav-item">
-                <a class="nav-link" href="/api/users/profile"
-                    >Logged in as:
-                    <span style="color: red"><%= user.name %></span></a
-                >
+                <a class="nav-link" href="/api/industry/options">Organizations</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/api/users/profile">Logged in as:<span style="color: red"><%= user.name %></span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/logout">Logout</a>

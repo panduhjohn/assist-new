@@ -163,7 +163,7 @@ module.exports = {
 
     renderOptions: (req, res) => {
         if (req.isAuthenticated()) {
-            return res.render('auth/options', { medical, lawEnforcement });
+            return res.render('main/options', { medical, lawEnforcement });
         }
         return res.redirect('/api/users/login');
     },

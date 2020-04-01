@@ -11,6 +11,7 @@ require('dotenv').config();
 
 const medical = require('../../../lib/medLoader');
 const lawEnforcement = require('../../../lib/policeLoader');
+const fire = require('../../../lib/fireLoader');
 
 module.exports = {
     renderIndex: (req, res, next) => {
@@ -49,10 +50,11 @@ module.exports = {
                                         message: err
                                     });
                                 } else {
-                                    return res.render('auth/options', {
+                                    return res.render('main/options', {
                                         user: req.user,
                                         medical,
-                                        lawEnforcement
+                                        lawEnforcement,
+                                        fire
                                     });
                                 }
                             });
@@ -160,6 +162,6 @@ module.exports = {
     },
 
     renderOptions: (req, res) => {
-        return res.render('auth/options', { medical, lawEnforcement });
+        return res.render('main/options', { medical, lawEnforcement, fire });
     }
 };

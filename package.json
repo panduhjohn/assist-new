@@ -2,7 +2,7 @@
   "name": "vet-assist",
   "version": "0.0.0",
   "engines": {
-      "node": "12.11.x"
+    "node": "12.11.x"
   },
   "private": true,
   "scripts": {

@@ -13,146 +13,153 @@ const medical = require('../../../lib/medLoader');
 const lawEnforcement = require('../../../lib/policeLoader');
 
 module.exports = {
-  renderIndex: (req, res, next) => {
-    return res.render('index');
-  },
+    renderIndex: (req, res, next) => {
+        return res.render('index');
+    },
 
-  renderRegister: (req, res) => {
-    return res.render('auth/register', { errors: req.flash('errors') });
-  },
+    renderRegister: (req, res) => {
+        return res.render('auth/register', { errors: req.flash('errors') });
+    },
 
-  register: (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
-    Industry.findOne({ email: req.body.email })
-      .then(user => {
-        if (user) {
-          // return req.flash('errors', 'User already exists');
-          return res.send('User Exists');
-        } else {
-          const newIndustry = new Industry();
-
-          newIndustry.name = req.body.name;
-          newIndustry.email = req.body.email;
-          newIndustry.password = req.body.password;
-
-          newIndustry
-            .save()
+    register: (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() });
+        }
+        Industry.findOne({ email: req.body.email })
             .then(user => {
-              req.login(user, err => {
-                if (err) {
-                  return res.status(400).json({
-                    confirmation: false,
-                    message: err
-                  });
+                if (user) {
+                    // return req.flash('errors', 'User already exists');
+                    return res.send('User Exists');
                 } else {
-                  return res.render('auth/options', { user: req.user });
+                    const newIndustry = new Industry();
+
+                    newIndustry.name = req.body.name;
+                    newIndustry.email = req.body.email;
+                    newIndustry.password = req.body.password;
+                    newIndustry.picture = faker.image.avatar();
+
+                    newIndustry
+                        .save()
+                        .then(user => {
+                            req.login(user, err => {
+                                if (err) {
+                                    return res.status(400).json({
+                                        confirmation: false,
+                                        message: err
+                                    });
+                                } else {
+                                    return res.render('auth/options', {
+                                        user: req.user,
+                                        medical,
+                                        lawEnforcement
+                                    });
+                                }
+                            });
+                        })
+                        .catch(err => {
+                            return next(err);
+                        });
                 }
-              });
             })
-            .catch(err => {
-              return next(err);
-            });
+            .catch(err => console.log(err));
+    },
+
+    renderLogin: (req, res) => {
+        return res.render('auth/login', { errors: req.flash('errors') });
+    },
+
+    login: passport.authenticate('industry-login', {
+        successRedirect: '/api/industry/options',
+        failureRedirect: '/api/industry/login',
+        failureFlash: true
+    }),
+
+    renderHomepage: (req, res) => {
+        if (req.isAuthenticated()) {
+            return res.render('main/homepage');
         }
-      })
-      .catch(err => console.log(err));
-  },
+        return res.redirect('/users/login');
+    },
 
-  renderLogin: (req, res) => {
-    return res.render('auth/login', { errors: req.flash('errors') });
-  },
-
-  login: passport.authenticate('industry-login', {
-    successRedirect: '/api/industry/options',
-    failureRedirect: '/api/industry/login',
-    failureFlash: true
-  }),
-
-  renderHomepage: (req, res) => {
-    if (req.isAuthenticated()) {
-      return res.render('main/homepage');
-    }
-    return res.redirect('/users/login');
-  },
-
-  renderProfile: (req, res) => {
-    if (req.isAuthenticated()) {
-      return res.render('auth/profile');
-    }
-    return res.redirect('/api/users/login');
-  },
-
-  renderUpdateProfile: (req, res) => {
-    if (req.isAuthenticated()) {
-      return res.render('auth/updateProfile');
-    }
-    return res.redirect('/api/users/login');
-  },
-
-  updateProfile: (params, id) => {
-    // const {name, email, address} = params //if you want to destructure remove params from the code after the clg(hello)
-    return new Promise((resolve, reject) => {
-      User.findById(id)
-        .then(user => {
-          // console.log('hello');
-          if (params.name) user.name = params.name;
-          if (params.email) user.email = params.email;
-          if (params.address) user.address = params.address;
-          if (params.city) user.city = params.city;
-          if (params.state) user.state = params.state;
-          return user;
-        })
-        .then(user => {
-          user.save().then(user => {
-            resolve(user);
-          });
-        })
-        .catch(err => reject(err));
-    }).catch(err => reject(err));
-  },
-
-  updatePassword: (params, id) => {
-    return new Promise((resolve, reject) => {
-      Industry.findById(id).then(user => {
-        if (
-          !params.oldPassword ||
-          !params.newPassword ||
-          !params.repeatNewPassword
-        ) {
-          reject('All password inputs must be filled');
-        } else if (params.newPassword !== params.repeatNewPassword) {
-          reject('New passwords do not match');
-        } else {
-          bcrypt
-            .compare(params.oldPassword, user.password)
-            .then(result => {
-              if (result === false) {
-                reject('Old password incorrect');
-              } else {
-                user.password = params.newPassword;
-                user
-                  .save()
-                  .then(user => {
-                    resolve(user);
-                  })
-                  .catch(err => {
-                    console.log(err);
-                    throw new Error('Error in passwords', err);
-                  });
-              }
-            })
-            .catch(err => {
-              console.log(err);
-              throw new Error('Error in passwords', err);
-            });
+    renderProfile: (req, res) => {
+        if (req.isAuthenticated()) {
+            return res.render('auth/profile');
         }
-      });
-    });
-  },
+        return res.redirect('/api/users/login');
+    },
 
-  renderOptions: (req, res) => {
-    return res.render('auth/options', { medical, lawEnforcement });
-  }
+    renderUpdateProfile: (req, res) => {
+        if (req.isAuthenticated()) {
+            return res.render('auth/updateProfile');
+        }
+        return res.redirect('/api/users/login');
+    },
+
+    updateProfile: (params, id) => {
+        // const {name, email, address} = params //if you want to destructure remove params from the code after the clg(hello)
+        return new Promise((resolve, reject) => {
+            User.findById(id)
+                .then(user => {
+                    // console.log('hello');
+                    if (params.name) user.name = params.name;
+                    if (params.email) user.email = params.email;
+                    if (params.address) user.address = params.address;
+                    if (params.city) user.city = params.city;
+                    if (params.state) user.state = params.state;
+                    return user;
+                })
+                .then(user => {
+                    user.save().then(user => {
+                        resolve(user);
+                    });
+                })
+                .catch(err => reject(err));
+        }).catch(err => reject(err));
+    },
+
+    updatePassword: (params, id) => {
+        return new Promise((resolve, reject) => {
+            Industry.findById(id).then(user => {
+                if (
+                    !params.oldPassword ||
+                    !params.newPassword ||
+                    !params.repeatNewPassword
+                ) {
+                    reject('All password inputs must be filled');
+                } else if (params.newPassword !== params.repeatNewPassword) {
+                    reject('New passwords do not match');
+                } else {
+                    bcrypt
+                        .compare(params.oldPassword, user.password)
+                        .then(result => {
+                            if (result === false) {
+                                reject('Old password incorrect');
+                            } else {
+                                user.password = params.newPassword;
+                                user.save()
+                                    .then(user => {
+                                        resolve(user);
+                                    })
+                                    .catch(err => {
+                                        console.log(err);
+                                        throw new Error(
+                                            'Error in passwords',
+                                            err
+                                        );
+                                    });
+                            }
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            throw new Error('Error in passwords', err);
+                        });
+                }
+            });
+        });
+    },
+
+    renderOptions: (req, res) => {
+        return res.render('auth/options', { medical, lawEnforcement });
+    }
 };

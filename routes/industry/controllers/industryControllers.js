@@ -93,7 +93,7 @@ module.exports = {
 
     renderUpdateProfile: (req, res) => {
         if (req.isAuthenticated()) {
-            return res.render('auth/updateProfile');
+            return res.render('auth/updateProfileIndustry');
         }
         return res.redirect('/api/users/login');
     },
@@ -101,7 +101,7 @@ module.exports = {
     updateProfile: (params, id) => {
         // const {name, email, address} = params //if you want to destructure remove params from the code after the clg(hello)
         return new Promise((resolve, reject) => {
-            User.findById(id)
+            Industry.findById(id)
                 .then(user => {
                     // console.log('hello');
                     if (params.name) user.name = params.name;
@@ -163,5 +163,15 @@ module.exports = {
 
     renderOptions: (req, res) => {
         return res.render('main/options', { medical, lawEnforcement, fire });
+    },
+
+    renderMedical: (req, res) => {
+        return res.render('main/medical', {medical})
+    },
+    renderFire: (req, res) => {
+        return res.render('main/fire', {fire})
+    },
+    renderLaw: (req, res) => {
+        return res.render('main/law', {lawEnforcement})
     }
 };

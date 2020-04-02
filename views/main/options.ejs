@@ -16,56 +16,43 @@
             <div class="container"> 
                 <h1>Medical</h1>
                 <div class="row">
-                    <% medical.forEach(({image, title, description}) => { %> 
+                   
                         <div class="col-md-4" style="width:20rem;">
                             <div class="card">
-                                <img src="<%= image %>" class="card-img-top" alt="..." />
+                                <a href="/api/industry/fire"><img src='/images/firebadge.jpg' class="card-img-top" alt="..." /></a>
                                 <div class="card-body">
-                                    <h5 class="card-title"><%= title %></h5>
-                                    <p class="card-text"><%= description %> </p>
+                                    <h5 class="card-title">Fire Services</h5>
+                                    <p class="card-text">Fire Stuff</p>
                                 </div>
                             </div>
-                        </br>
                         </div>
-                    <%}) %>
-                </div>
-            </div> 
-            <div class="container"> 
-                <h1>Law Enforcement</h1>
-                <div class="row">
-                    <% lawEnforcement.forEach(({image, title, description}) => { %> 
+                        
+                         <div class="col-md-4" style="width:20rem;">
+                            <div class="card">
+                                <a href="/api/industry/medical"><img src='/images/cadecus.png' class="card-img-top" alt="..." /></a>
+                                <div class="card-body">
+                                    <h5 class="card-title">Fire Services</h5>
+                                    <p class="card-text">Fire Stuff</p>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="col-md-4" style="width:20rem;">
                             <div class="card">
-                                <img src="<%= image %>" class="card-img-top" alt="..." />
+                                <a href="/api/industry/law"><img src='/images/copbadge.jpg' class="card-img-top" alt="..." /></a>
                                 <div class="card-body">
-                                    <h5 class="card-title"><%= title %></h5>
-                                    <p class="card-text"><%= description %> </p>
+                                    <h5 class="card-title">Fire Services</h5>
+                                    <p class="card-text">Fire Stuff</p>
                                 </div>
                             </div>
-                        </br>
                         </div>
-                    <% }) %>
-                </div>
-            </div> 
-            <div class="container"> 
-                <h1>Firefighters/Paramedics</h1>
-                <div class="row">
-                    <% fire.forEach(({image, title, description}) => { %> 
-                        <div class="col-md-4" style="width:20rem;">
-                            <div class="card">
-                                <img src="<%= image %>" class="card-img-top" alt="..." />
-                                <div class="card-body">
-                                    <h5 class="card-title"><%= title %></h5>
-                                    <p class="card-text"><%= description %> </p>
-                                </div>
-                            </div>
-                        </br>
-                        </div>
-                    <% }) %>
+
+                       
+                
                 </div>
             </div> 
             
-            
+             
 
 
         </div>

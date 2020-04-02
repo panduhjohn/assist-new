@@ -11,7 +11,7 @@ const UserSchema = new Schema({
     city: { type: String, default: 'Please update city', trim: true },
     state: { type: String, default: 'Please update state', trim: true }, 
     credentials: { type: String, default: 'Please update credentials', trim: true }, 
-    organization: { type: String, default: 'Please update credentials', trim: true }, 
+    organization: { type: String, default: 'Please update organization', trim: true }, 
 })
 
 UserSchema.pre('save', function(next) {

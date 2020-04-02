@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../partials/head %>
+        <title>Update Profile</title>
+    </head>
+    <body>
+        <% include ../partials/nav %>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 my-form" >
+                    <h2>Update Profile: <%= user.name %> </h2>
+                    <br />
+                    
+                    <form role="form" method="POST" action="/api/industry/update-profile?_method=PUT">
+                        <fieldset>
+                            <img src="<%= user.picture %>" style="border-radius: 50%;" alt="profile"/>
+                            <div class="form-group">
+                                <br />
+                                <label for="name">Name:</label>
+                                <input type="text" name="name" id="name" class="form-control input-lg" placeholder="<%= user.name %>"/>
+                            </div>
+                            <div class="form-group">
+                                <br />
+                                <label for="email">Email:</label>
+                                <input type="text" name="email" id="email" class="form-control input-lg" placeholder="<%= user.email %>"/>
+                            </div>
+                            <div class="form-group">
+                                <br />
+                                <label for="address">Address:</label>
+                                <input type="text" name="address" id="address" class="form-control input-lg" placeholder="<%= user.address %>"/>
+                            </div>
+                            <div class="form-group">
+                                <br />
+                                <label for="city">City:</label>
+                                <input type="text" name="city" id="city" class="form-control input-lg" placeholder="<%= user.city %>"/>
+                            </div>
+                            <div class="form-group">
+                                <br />
+                                <label for="state">State:</label>
+                                <input type="text" name="state" id="state" class="form-control input-lg" placeholder="<%= user.state %>"/>
+                            </div>
+                            <div class="form-group">
+                                <br />
+                                <label for="credentials">Credentials:</label>
+                                <input type="text" name="credentials" id="credentials" class="form-control input-lg" placeholder="<%= user.credentials %>"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="organization">Organization</label>
+                                <select class="form-control" id="organization" name='organization'>
+                                    <option>Fire/Rescue</option>
+                                    <option>Law Enforcement</option>
+                                    <option>Medical</option>
+                                    <option>Chef</option>
+                                </select>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Update"/>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+
+                    
+                    <h3>Change Password:</h3>
+                    <form role="form" method="POST" action="/api/industry/update-password?_method=PUT">
+                        <fieldset>
+                            <div class="form-group">
+                                <br />
+                                <label for="oldPassword">Old Password:</label>
+                                <input type="password" name="oldPassword" id="oldPassword" class="form-control input-lg" placeholder="Old Password"/>
+                            </div>
+                            <div class="form-group">
+                                <br />
+                                <label for="newPassword">New Password:</label>
+                                <input type="password" name="newPassword" id="newPassword" class="form-control input-lg" placeholder="New Password"/>
+                            </div>
+                            <div class="form-group">
+                                <br />
+                                <label for="repeatNewPassword">Repeat New Password:</label>
+                                <input type="password" name="repeatNewPassword" id="repeatNewPassword" class="form-control input-lg" placeholder="New Password" />
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Update Password"/>
+                                </div>
+                            </div>
+                        </fieldset>
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+        <% include ../partials/footer %> <% include ../partials/scripts %>
+    </body>
+</html>

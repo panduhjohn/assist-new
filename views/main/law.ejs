@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Law Enforcement</title>
+        <% include ../partials/head %>
+    </head>
+    <body>
+        <% include ../partials/nav %>
+
+        <div>
+            <h1>THIS IS THE LANDING AFTER Register as INDUSTRY</h1>
+          
+            <h3>Thank you <%=  user.name  %>, for registering with our database.</h3>
+            
+            <div class="container"> 
+                <h1>Law Enforcement</h1>
+                <div class="row">
+                    <% lawEnforcement.forEach(({image, title, description}) => { %> 
+                        <div class="col-md-4" style="width:20rem;">
+                            <div class="card">
+                                <img src="<%= image %>" class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= title %></h5>
+                                    <p class="card-text"><%= description %> </p>
+                                </div>
+                            </div>
+                        </br>
+                        </div>
+                    <% }) %>
+                </div>
+            </div> 
+
+        </div>
+
+
+
+        
+
+        <% include ../partials/footer %> 
+        <% include ../partials/scripts %>
+    </body>
+</html>

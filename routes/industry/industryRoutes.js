@@ -5,10 +5,7 @@ const passport = require('passport');
 const userValidation = require('../users/utils/userValidation');
 const industryController = require('../industry/controllers/industryControllers');
 
-const {
-  updatePassword,
-  updateProfile
-} = require('../users/controllers/userController');
+const { updatePassword, updateProfile } = require('../users/controllers/userController');
 
 const Industry = require('./models/Industry');
 
@@ -34,8 +31,6 @@ router.get('/homepage', industryController.renderHomepage);
 router.get('/profile', industryController.renderProfile);
 
 router.get('/options', industryController.renderOptions);
-
-// router.get('/update-profile', industryController.updateProfile)
 
 router.get('/update-profile', industryController.renderUpdateProfile);
 
@@ -64,8 +59,9 @@ router.put('/update-password', (req, res) => {
     });
 });
 
-router.get('/test', (req, res) => {
-  res.send('Hey from industry'); //!works
-});
+router.get('/medical', industryController.renderMedical)
+router.get('/fire', industryController.renderFire)
+router.get('/law', industryController.renderLaw)
+
 
 module.exports = router;

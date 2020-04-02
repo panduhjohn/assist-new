@@ -41,4 +41,8 @@ router.get('/logout', (req, res) => {
     return res.redirect('/');
 });
 
+router.get('*', (req, res) => {
+    return res.render('main/404')
+})
+
 module.exports = router;

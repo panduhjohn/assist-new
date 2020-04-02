@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-6 col-xs-6 ">
                 <div class="thumbnail">
-                    <img style="height:100%; width: 100%" src="<%=image%>" class="img-responsive"/>
+                    <img style="height:100%; width: 100%" src="<%#= image %>" class="img-responsive"/>
                 </div>
                 <div class="caption">
                     <h3><%#=product.name%></h3>
@@ -25,8 +25,8 @@
             <h3>Price Per Item: <label>$<%#=product.price%></label></h3>
          
          <!-- <form method="post" action="#" aria-label="...">-->
-            <form method="post" action="/api/cart/<%#= product._id %>aria-label="...">
-                <div class="btn-group" role="group">
+            <form method="post" action="/api/cart/<%#= product._id %>" aria-label="...">
+                <div class="btn-group" role="group"></div>
                     <input type="hidden" name="quantity" id="quantity" value="1" />
                     <button class="item-count" type="button" id="minus" class="btn">-</button>
                     <button class="item-count" type="button" id="total" class="btn">1</button>
@@ -38,11 +38,8 @@
                     <input style="font-weight:400;" type="text" name="item" class="form-control" value="<%#=product.name%>" readonly/>
                     <input style="font-weight:400;" type="text" name="priceValue" id="priceValue" class="form-control" value="<%#=product.price%>" readonly/>
                 </div>
-                <%if (user) { %>
-                    <button type="submit" class="btn btn-primary btn-lg">Add to Cart</button>
-                <% } else { %>
-                    <a href="/api/users/register" class="btn btn-warning btn-lg">Signup to Begin Buying</a>
-                <% } %>
+                <button type="submit" class="btn btn-primary btn-lg">Add to Cart</button>
+                
             </form>
         </div>
 

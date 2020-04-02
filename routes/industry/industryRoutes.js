@@ -65,5 +65,9 @@ router.get('/law', industryController.renderLaw)
 
 router.get('/details/:user', industryController.renderDetails)
 
+router.get('/nowhere', (req, res) => {
+    res.send('The first 6 cards are dummy data, sorry to waste your time. Go Back.')
+})
+
 
 module.exports = router;

@@ -10,7 +10,7 @@ require('../../../lib/passport');
 require('dotenv').config();
 
 const medical = require('../../../lib/medLoader');
-const lawEnforcement = require('../../../lib/policeLoader');
+const law = require('../../../lib/policeLoader');
 const fire = require('../../../lib/fireLoader');
 
 module.exports = {
@@ -53,7 +53,7 @@ module.exports = {
                                     return res.render('main/options', {
                                         user: req.user,
                                         medical,
-                                        lawEnforcement,
+                                        law,
                                         fire
                                     });
                                 }
@@ -162,16 +162,20 @@ module.exports = {
     },
 
     renderOptions: (req, res) => {
-        return res.render('main/options', { medical, lawEnforcement, fire });
+        return res.render('main/options', { medical, law, fire });
     },
 
     renderMedical: (req, res) => {
-        return res.render('main/medical', {medical})
+        return res.render('main/medical', { medical });
     },
     renderFire: (req, res) => {
-        return res.render('main/fire', {fire})
+        return res.render('main/fire', { fire });
     },
     renderLaw: (req, res) => {
-        return res.render('main/law', {lawEnforcement})
+        return res.render('main/law', { law });
+    },
+
+    renderDetails: (req, res) => {
+        return res.render('main/memberDetails', { medical, law, fire })
     }
 };

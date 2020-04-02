@@ -9,7 +9,7 @@ require('../../../lib/passport');
 require('dotenv').config();
 
 const medical = require('../../../lib/medLoader');
-const lawEnforcement = require('../../../lib/policeLoader');
+const law = require('../../../lib/policeLoader');
 
 module.exports = {
     renderIndex: (req, res, next) => {
@@ -163,7 +163,7 @@ module.exports = {
 
     renderOptions: (req, res) => {
         if (req.isAuthenticated()) {
-            return res.render('main/options', { medical, lawEnforcement });
+            return res.render('main/options', { medical, law });
         }
         return res.redirect('/api/users/login');
     },

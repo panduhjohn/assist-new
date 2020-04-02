@@ -1,58 +1,27 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Thank you!</title>
+        <title>Details</title>
         <% include ../partials/head %>
     </head>
     <body>
         <% include ../partials/nav %>
 
         <div class="ambu-background" >
-            <h1>THIS IS THE PAGE AFTER YOU SELECT A PROFESSIONAL</h1>
-            <div class="container single-product">
-     
-        <div class="row">
-            <div class="col-md-6 col-xs-6 ">
-                <div class="thumbnail">
-                    <img style="height:100%; width: 100%" src="<%#= image %>" class="img-responsive"/>
-                </div>
-                <div class="caption">
-                    <h3><%#=product.name%></h3>
-                    <p><%#=product.description%></p>
-                </div>
-            </div>
-        <div class="col-md-4 col-xs-6 price" style="padding-top:100px; margin: 0 auto;" >
-            <h3>Price Per Item: <label>$<%#=product.price%></label></h3>
-         
-         <!-- <form method="post" action="#" aria-label="...">-->
-            <form method="post" action="/api/cart/<%#= product._id %>" aria-label="...">
-                <div class="btn-group" role="group"></div>
-                    <input type="hidden" name="quantity" id="quantity" value="1" />
-                    <button class="item-count" type="button" id="minus" class="btn">-</button>
-                    <button class="item-count" type="button" id="total" class="btn">1</button>
-                    <button class="item-count" type="button" id="plus" class="btn">+</button>
-                </div>
-                <div class="form-group">
-                    <input type="hidden" name="product_id" id="product" value="<%#=product._id%>"/>
-                    <input type="hidden" name="priceHidden" id="priceHidden" value="<%#=product.price%>"/>
-                    <input style="font-weight:400;" type="text" name="item" class="form-control" value="<%#=product.name%>" readonly/>
-                    <input style="font-weight:400;" type="text" name="priceValue" id="priceValue" class="form-control" value="<%#=product.price%>" readonly/>
-                </div>
-                <button type="submit" class="btn btn-primary btn-lg">Add to Cart</button>
-                
-            </form>
+            <% const {picture, name, credentials, email} = user %>
+                        <div class="col-md-4" style="width:20rem;">
+                            <div class="card">
+                                <img src="<%= picture %>" class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= name %></h5>
+                                    <p class="card-text"><%= credentials %> </p>
+                                    <a href="/api/industry/details/<%= email %> " class='btn btn-primary'>Select</a>
+                                </div>
+                            </div>
+                        </br>
+                        </div>
         </div>
 
-      </div>
-    
-    </div>
-       
-               
-        </div>
-
-
-
-        
 
         <% include ../partials/footer %> <% include ../partials/scripts %>
     </body>

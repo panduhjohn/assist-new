@@ -7,60 +7,42 @@
     <body>
         <% include ../partials/nav %>
 
-        <div >
-            <h1>THIS IS THE LANDING AFTER Register as INDUSTRY</h1>
-          
-            <h3>Thank you <%=  user.name  %>, for registering with our database.</h3>
-            
-
-            <div class="container"> 
-                <h1>Medical</h1>
-                <div class="row">
-                   
-                        <div class="col-md-4" style="width:20rem;">
-                            <div class="card">
-                                <a href="/api/industry/fire"><img src='/images/firebadge.jpg' class="card-img-top" alt="..." /></a>
-                                <div class="card-body">
-                                    <h5 class="card-title">Firefighter/Paramedic</h5>
-                                    <p class="card-text">Oh so hot.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                         <div class="col-md-4" style="width:20rem;">
-                            <div class="card">
-                                <a href="/api/industry/medical"><img src='/images/cadecus.png' class="card-img-top" alt="..." /></a>
-                                <div class="card-body">
-                                    <h5 class="card-title">Medical Professionals</h5>
-                                    <p class="card-text">Motrin slingers</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4" style="width:20rem;">
-                            <div class="card">
-                                <a href="/api/industry/law"><img src='/images/copbadge.jpg' class="card-img-top" alt="..." /></a>
-                                <div class="card-body">
-                                    <h5 class="card-title">Law Enforcement</h5>
-                                    <p class="card-text">Donut destroyers</p>
-                                </div>
-                            </div>
-                        </div>
-
-                       
+        <div class="container"> 
+            <h1 style='text-align: center; padding-top: 100px'>Select Profession</h1>
+            <div class="row">
                 
-                </div>
-            </div> 
-            
-             
+                    <div class="col-md-4" style="width:20rem;">
+                        <div class="card">
+                            <a href="/api/industry/fire"><img src='/images/firebadge.jpg' class="card-img-top" alt="..." /></a>
+                            <div class="card-body">
+                                <h5 class="card-title">Firefighter/Paramedic</h5>
+                                <p class="card-text">Oh so hot.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                        <div class="col-md-4" style="width:20rem;">
+                        <div class="card">
+                            <a href="/api/industry/medical"><img src='/images/cadecus.png' class="card-img-top" alt="..." /></a>
+                            <div class="card-body">
+                                <h5 class="card-title">Medical Professionals</h5>
+                                <p class="card-text">Motrin slingers</p>
+                            </div>
+                        </div>
+                    </div>
 
-
-        </div>
-
-
-
+                    <div class="col-md-4" style="width:20rem;">
+                        <div class="card">
+                            <a href="/api/industry/law"><img src='/images/copbadge.jpg' class="card-img-top" alt="..." /></a>
+                            <div class="card-body">
+                                <h5 class="card-title">Law Enforcement</h5>
+                                <p class="card-text">Donut destroyers</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div> 
         
-
         <% include ../partials/footer %> 
         <% include ../partials/scripts %>
     </body>

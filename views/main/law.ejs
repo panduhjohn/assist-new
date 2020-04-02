@@ -28,6 +28,19 @@
                         </br>
                         </div>
                     <% }) %>
+                        <% users.forEach(({picture, name, credentials, email}) => { %> 
+                        <div class="col-md-4" style="width:20rem;">
+                            <div class="card">
+                                <img src="<%= picture %>" class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= name %></h5>
+                                    <p class="card-text"><%= credentials %> </p>
+                                    <a href="/api/industry/details/<%= email %> " class='btn btn-primary'>Select</a>
+                                </div>
+                            </div>
+                        </br>
+                        </div>
+                    <%}) %>    
                 </div>
             </div> 
 

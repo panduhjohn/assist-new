@@ -2,7 +2,7 @@ const { validationResult } = require('express-validator');
 const faker = require('faker');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
-
+const User = require('../../users/models/User');
 const Industry = require('../models/Industry');
 
 require('../../../lib/passport');
@@ -166,16 +166,32 @@ module.exports = {
     },
 
     renderMedical: (req, res) => {
-        return res.render('main/medical', { medical });
+        User.find({ organization: 'Medical' })
+            .then(users => {
+                return res.render('main/medical', { medical, users });
+            })
+            .catch(err => console.log(err));
     },
     renderFire: (req, res) => {
-        return res.render('main/fire', { fire });
+        User.find({ organization: 'Fire/Rescue' })
+            .then(users => {
+                return res.render('main/fire', { fire, users });
+            })
+            .catch(err => console.log(err));
     },
     renderLaw: (req, res) => {
-        return res.render('main/law', { law });
+        User.find({ organization: 'Law Enforcement' })
+            .then(users => {
+                return res.render('main/law', { law, users });
+            })
+            .catch(err => console.log(err));
     },
 
     renderDetails: (req, res) => {
-        return res.render('main/memberDetails', { medical, law, fire })
+        User.findOne({ email: req.params.user })
+            .then(user => {
+                return res.render('main/memberDetails', { user });
+            })
+            .catch(err => console.log(err));
     }
 };

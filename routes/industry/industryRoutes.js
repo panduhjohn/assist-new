@@ -63,7 +63,7 @@ router.get('/medical', industryController.renderMedical)
 router.get('/fire', industryController.renderFire)
 router.get('/law', industryController.renderLaw)
 
-router.get('/details', industryController.renderDetails)
+router.get('/details/:user', industryController.renderDetails)
 
 
 module.exports = router;

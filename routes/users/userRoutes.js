@@ -26,8 +26,6 @@ router.get('/options', userController.renderOptions)
 
 router.get('/thanks', userController.renderThanks)
 
-// router.get('/update-profile', userController.updateProfile)
-
 router.get('/update-profile', userController.renderUpdateProfile);
 
 router.put('/update-profile', (req, res, next) => {

@@ -8,18 +8,21 @@
         <% include ../partials/nav %>
 
         <div class="ambu-background" >
-            <% const {picture, name, credentials, email} = user %>
-                        <div class="col-md-4" style="width:20rem;">
-                            <div class="card">
-                                <img src="<%= picture %>" class="card-img-top" alt="..." />
-                                <div class="card-body">
-                                    <h5 class="card-title"><%= name %></h5>
-                                    <p class="card-text"><%= credentials %> </p>
-                                    <a href="/api/industry/details/<%= email %> " class='btn btn-primary'>Select</a>
-                                </div>
-                            </div>
-                        </br>
-                        </div>
+            <% const {picture, name, credentials, email, address, city, state} = user %>
+                <div  style="width:400px; margin-left: 450px; padding-top: 100px">
+                   
+                        <img src="<%= picture %>" class="card-img-top" alt="..." />
+                        
+                        <h5 class="card-text">Name: <%= name %></h5>
+                        <h5 class="card-text">Email: <%= email %> </h5>
+                        <h5 class="card-text">Address: <%= address %> </h5>
+                        <h5 class="card-text">City: <%= city %> </h5>
+                        <h5 class="card-text">State: <%= state %> </h5>
+                        <h5 class="card-text">Credentials: <%= credentials %> </h5>
+                        <a href="/api/industry/details/<%= email %> " class='btn btn-primary'>Contact Member</a>
+                    
+                </br>
+                </div>
         </div>
 
 

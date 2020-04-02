@@ -8,9 +8,9 @@
         <% include ../partials/nav %>
 
         <div class="ambu-background">
-            <h2>Register Here</h2>
+            
 
-            <div class="container">
+            <div class="container" style='padding-top: 100px;'>
                 <div class="row">
                     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 my-form">
                             <% if (errors.length > 0) { %>
@@ -23,7 +23,7 @@
                     <% } %>
                         <!-- REGISTER AS A INDUSTRY -->
                    
-                        <form role="form" method="POST" action="/api/industry/register">
+                        <form style='padding-bottom: 20px;' role="form" method="POST" action="/api/industry/register">
                             <fieldset>
                                 <h2>Register Institution
                                     <span class="button-checkbox">

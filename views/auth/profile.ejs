@@ -8,14 +8,14 @@
         <% include ../partials/nav %>
 
         <div class="ambu-background" style="height: 100%; width: 100%; color: black;">
-            <h1>THIS IS THE PROFILE PAGE</h1>
+           
             
-            <p>Please update your profile with your information</p>
+            <h3 style='text-align: center;'>Please update your profile with your information</h3>
             <div class="container profile">
-                <div class="row">
-                    <div class="col-sm-6 offset-sm-3 col-md-6 offset-md-3">
+                <div class="row" >
+                    <div style='padding-left: 200px;'>
                         <br />
-                        <h1>Profile for <%= user.name %></h1>
+                        <h1>Profile for <span style='color: red'><%= user.name %></span></h1>
                         <img src="<%= user.picture %>" class="img-circle img-responsive img-center" alt="profile"/>
                         <br />
                         <p>Name: <%= user.name %></p>

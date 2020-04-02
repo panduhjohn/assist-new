@@ -162,7 +162,7 @@ module.exports = {
     },
 
     renderOptions: (req, res) => {
-        return res.render('main/options', { medical, law, fire });
+        return res.render('main/options', { medical, law, fire, Industry });
     },
 
     renderMedical: (req, res) => {
